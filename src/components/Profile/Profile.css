@@ -1,0 +1,37 @@
+.profile {
+  min-width: 250px;
+  height: 60px;
+  border: 1px solid #7c7c8a;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 7px;
+}
+
+.profile-image {
+  width: 28px;
+  height: 28px;
+}
+
+.profile-data {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.profile-name {
+  color: #7c7c8a;
+  font-weight: 600;
+}
+
+.profile-balance {
+  color: #7c7c8a;
+}
+
+.profile-balance-ammount,
+.profile-username {
+  color: #dfdfdf;
+}

@@ -1,18 +1,26 @@
-import { Route, Routes } from 'react-router-dom';
-import Login from './pages/Login';
-import Home from './pages/Home';
-import Register from './pages/Register';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
-function ifAuthenticated(): boolean {
-  return !!window.sessionStorage.getItem('token');
-}
+import Home from './pages/Home';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+
+import { useContext } from 'react';
+import { ApiContext } from './context/api';
+import { NotFoundPage } from './pages/404';
 
 export function Router() {
+  const { token } = useContext(ApiContext);
+
   return (
     <Routes>
-      {ifAuthenticated() && <Route path='/' element={<Home />} />}
-      <Route path='/Login' element={<Login />} />
-      <Route path='/Register' element={<Register />} />
+      <Route path='/' element={token ? <Home /> : <Navigate to='/login' />} />
+
+      <Route path='/login' element={!token ? <Login /> : <Navigate to='/' />} />
+      <Route
+        path='/register'
+        element={!token ? <Register /> : <Navigate to='/' />}
+      />
+      <Route path='*' element={<NotFoundPage />} />
     </Routes>
   );
 }

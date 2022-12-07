@@ -1,0 +1,19 @@
+.component {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.button {
+  background-color: #81d8f7;
+  height: 45px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 16px;
+  border: 0;
+  border-radius: 4px;
+}
+
+.button:hover {
+  background-color: #94e1fd;
+}
