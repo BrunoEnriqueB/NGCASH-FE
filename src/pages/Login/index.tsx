@@ -81,7 +81,7 @@ export function Login() {
             onChange={handleChangePassword}
           />
         </div>
-        <Button label='Enviar' onClick={() => submit()} />
+        <Button label='Submit' onClick={() => submit()} />
         <Link to='/register'>
           <span className={styles.register}>
             Does not have an account? Create here

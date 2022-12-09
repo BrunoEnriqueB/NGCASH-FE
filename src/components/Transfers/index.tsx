@@ -56,14 +56,14 @@ function Transfers() {
           }}
           name='transfers'
         >
-          <option value='1'>Enviadas + recebidas</option>
-          <option value='2'>Enviadas</option>
-          <option value='3'>Recebidas</option>
+          <option value='1'>Sent and received</option>
+          <option value='2'>Sent</option>
+          <option value='3'>Received</option>
         </select>
         <div>
-          <span>Ordenar por: </span>
+          <span>Order by: </span>
           <div className='transfers-filters-filter'>
-            <label htmlFor='asc'>Mais antigas</label>
+            <label htmlFor='asc'>Older</label>
             <input
               onClick={() => {
                 setOrder('asc');
@@ -73,7 +73,7 @@ function Transfers() {
             />
           </div>
           <div className='transfers-filters-filter'>
-            <label htmlFor='desc'>Mais novas</label>
+            <label htmlFor='desc'>Newer</label>
             <input
               onClick={() => {
                 setOrder('desc');
@@ -83,7 +83,7 @@ function Transfers() {
             />
           </div>
           <div className='transfers-filters-filter'>
-            <label htmlFor='data'>Data: </label>
+            <label htmlFor='data'>Date: </label>
             <input
               onChange={handleDate}
               type='date'

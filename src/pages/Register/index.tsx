@@ -67,19 +67,17 @@ export function Register() {
         <div className={styles.logo}>
           <img className={styles.logoImg} src={logo}></img>
           <h1 className={styles.logoTitle}>NG CASH</h1>
-          <span className={styles.logoSubtitle}>
-            Registre-se e começe a usar
-          </span>
+          <span className={styles.logoSubtitle}>Sign up and start to use!</span>
         </div>
         <div className={styles.inputs}>
           <Input
-            label='Endereço de email'
+            label='Email'
             iconLeft={Email}
             placeholder='johndoe@example.com'
             onChange={handleChangeUsername}
           />
           <Input
-            label='Sua senha'
+            label='Password'
             iconLeft={Password}
             iconRight={passwordIconType}
             placeholder='••••••••'
@@ -88,9 +86,11 @@ export function Register() {
             onChange={handleChangePassword}
           />
         </div>
-        <Button label='Enviar' onClick={submit} />
+        <Button label='Submit' onClick={submit} />
         <Link to='/login'>
-          <span className={styles.login}>Já tem uma conta? Entre aqui</span>
+          <span className={styles.login}>
+            Already have an account? Sing in here!
+          </span>
         </Link>
       </div>
     </main>

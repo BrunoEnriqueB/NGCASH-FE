@@ -4,6 +4,7 @@ import ApiTypeError from '../../@types/ApiTypeError';
 import Logout from '../../components/Logout';
 import Profile from '../../components/Profile';
 import Transfers from '../../components/Transfers';
+import Transfer from '../../components/Transfer';
 import { ApiContext } from '../../context/api';
 import styles from './styles.module.css';
 
@@ -43,6 +44,7 @@ function Home() {
         </div>
       </header>
       <main className={styles.home}>
+        <Transfer />
         <Transfers />
       </main>
     </div>

@@ -5,6 +5,7 @@ import { api } from '../services/api';
 import UserBalance from '../@types/UserBalance';
 import Transactions from '../@types/Transactions';
 import TransfersFilters from '../@types/TransfersFilters';
+import ApiMessageResponse from '../@types/ApiMessageResponse';
 
 interface ApiProvider {
   children: ReactNode;
@@ -25,6 +26,10 @@ interface ApiContextData {
   getTransactions: (
     filters: TransfersFilters
   ) => Promise<AxiosResponse<Transactions>>;
+  transfer: (
+    username: string,
+    value: number
+  ) => Promise<AxiosResponse<ApiMessageResponse>>;
   signOut: () => void;
 }
 
@@ -32,6 +37,7 @@ export const ApiContext = createContext({} as ApiContextData);
 
 export function ApiProvider(props: ApiProvider) {
   const [token, setToken] = useState('');
+  const [userData, setUserData] = useState({} as UserBalance);
 
   async function signUp(
     username: string,
@@ -61,6 +67,8 @@ export function ApiProvider(props: ApiProvider) {
   async function getUserBalance(): Promise<AxiosResponse<UserBalance, any>> {
     const res: AxiosResponse<UserBalance> = await api.get('/user/userdata');
 
+    localStorage.setItem('username', res.data.username);
+
     return res;
   }
 
@@ -76,6 +84,20 @@ export function ApiProvider(props: ApiProvider) {
     const res: AxiosResponse<Transactions> = await api.get(
       `/transactions/transfers?` + url.toString()
     );
+    return res;
+  }
+
+  async function transfer(sentToUsername: string, value: number) {
+    let username = localStorage.getItem('username');
+
+    if (!username) {
+      window.alert('Some error occurred while');
+      signOut();
+    }
+    const res: AxiosResponse<ApiMessageResponse> = await api.get(
+      `/transactions/transfer?from=${username}&to=${sentToUsername}&ammount=${value}`
+    );
+
     return res;
   }
 
@@ -101,6 +123,7 @@ export function ApiProvider(props: ApiProvider) {
         getUserBalance,
         getTransactions,
         signOut,
+        transfer,
       }}
     >
       {props.children}
